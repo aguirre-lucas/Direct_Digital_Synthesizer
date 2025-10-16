@@ -70,15 +70,16 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z010clg400-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
+set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir C:/Users/lucas/VivadoProjects/direct_digital_synthesizer/direct_digital_synthesizer.cache/wt [current_project]
 set_property parent.project_path C:/Users/lucas/VivadoProjects/direct_digital_synthesizer/direct_digital_synthesizer.xpr [current_project]
+set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
 set_property board_part_repo_paths {C:/Users/lucas/AppData/Roaming/Xilinx/Vivado/2021.1/xhub/board_store/xilinx_board_store} [current_project]
@@ -87,11 +88,14 @@ set_property ip_output_repo c:/Users/lucas/VivadoProjects/direct_digital_synthes
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-add_files c:/Users/lucas/VivadoProjects/direct_digital_synthesizer/sin_4096.coe
+add_files C:/Users/lucas/VivadoProjects/direct_digital_synthesizer/sin_4096.coe
 read_vhdl -library xil_defaultlib {
   C:/Users/lucas/VivadoProjects/direct_digital_synthesizer/direct_digital_synthesizer.srcs/sources_1/new/phase_accumulator.vhd
   C:/Users/lucas/VivadoProjects/direct_digital_synthesizer/direct_digital_synthesizer.srcs/sources_1/new/top_level.vhd
 }
+read_ip -quiet c:/Users/lucas/VivadoProjects/direct_digital_synthesizer/direct_digital_synthesizer.srcs/sources_1/ip/single_port_ROM/single_port_ROM.xci
+set_property used_in_implementation false [get_files -all c:/Users/lucas/VivadoProjects/direct_digital_synthesizer/direct_digital_synthesizer.gen/sources_1/ip/single_port_ROM/single_port_ROM_ooc.xdc]
+
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

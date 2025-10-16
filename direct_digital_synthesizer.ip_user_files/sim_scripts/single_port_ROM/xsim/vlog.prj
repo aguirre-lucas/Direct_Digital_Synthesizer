@@ -1,0 +1,6 @@
+verilog xil_defaultlib  \
+"../../../../direct_digital_synthesizer.gen/sources_1/ip/single_port_ROM/sim/single_port_ROM.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
