@@ -21,12 +21,12 @@ architecture bhv of phase_accumulator is
     signal phase_acc : std_logic_vector(47 downto 0);
 begin
     
-    process (clk, rst, tuning_word) -- clocked
+    process (clk, rst) -- clocked
     begin
         if (rst = '1') then 
             phase_acc <= (others => '0'); -- reset to 0 async
         elsif (rising_edge(clk)) then
-            phase_acc <= std_logic_vector(unsigned(phase_acc) + to_unsigned(1, 48)); -- add by 1
+            phase_acc <= std_logic_vector(unsigned(phase_acc) + unsigned(tuning_word)); -- add by 1
             -- natural overflow will occur
         end if;
     end process;

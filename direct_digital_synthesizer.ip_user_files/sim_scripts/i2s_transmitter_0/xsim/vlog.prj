@@ -1,0 +1,6 @@
+sv xil_defaultlib  \
+"../../../../direct_digital_synthesizer.gen/sources_1/ip/i2s_transmitter_0/sim/i2s_transmitter_0.sv" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

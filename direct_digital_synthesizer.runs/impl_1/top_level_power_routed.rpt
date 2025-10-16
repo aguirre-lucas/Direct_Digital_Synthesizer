@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date             : Thu Oct 16 16:05:50 2025
+| Date             : Thu Oct 16 16:54:40 2025
 | Host             : Lucas running 64-bit major release  (build 9200)
 | Command          : report_power -file top_level_power_routed.rpt -pb top_level_power_summary_routed.pb -rpx top_level_power_routed.rpx
 | Design           : top_level
@@ -29,38 +29,41 @@ Table of Contents
 1. Summary
 ----------
 
-+--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.108        |
-| Design Power Budget (W)  | Unspecified* |
-| Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.018        |
-| Device Static (W)        | 0.090        |
-| Effective TJA (C/W)      | 11.5         |
-| Max Ambient (C)          | 83.8         |
-| Junction Temperature (C) | 26.2         |
-| Confidence Level         | Low          |
-| Setting File             | ---          |
-| Simulation Activity File | ---          |
-| Design Nets Matched      | NA           |
-+--------------------------+--------------+
++--------------------------+----------------------------------+
+| Total On-Chip Power (W)  | 16.576 (Junction temp exceeded!) |
+| Design Power Budget (W)  | Unspecified*                     |
+| Power Budget Margin (W)  | NA                               |
+| Dynamic (W)              | 15.825                           |
+| Device Static (W)        | 0.751                            |
+| Effective TJA (C/W)      | 11.5                             |
+| Max Ambient (C)          | 0.0                              |
+| Junction Temperature (C) | 125.0                            |
+| Confidence Level         | Low                              |
+| Setting File             | ---                              |
+| Simulation Activity File | ---                              |
+| Design Nets Matched      | NA                               |
++--------------------------+----------------------------------+
 * Specify Design Power Budget using, set_operating_conditions -design_power_budget <value in Watts>
 
 
 1.1 On-Chip Components
 ----------------------
 
-+--------------+-----------+----------+-----------+-----------------+
-| On-Chip      | Power (W) | Used     | Available | Utilization (%) |
-+--------------+-----------+----------+-----------+-----------------+
-| Slice Logic  |     0.000 |       11 |       --- |             --- |
-|   Others     |     0.000 |        9 |       --- |             --- |
-|   Register   |     0.000 |        2 |     35200 |           <0.01 |
-| Signals      |     0.014 |       19 |       --- |             --- |
-| Block RAM    |     0.000 |        2 |        60 |            3.33 |
-| I/O          |     0.004 |       17 |       100 |           17.00 |
-| Static Power |     0.090 |          |           |                 |
-| Total        |     0.108 |          |           |                 |
-+--------------+-----------+----------+-----------+-----------------+
++----------------+-----------+----------+-----------+-----------------+
+| On-Chip        | Power (W) | Used     | Available | Utilization (%) |
++----------------+-----------+----------+-----------+-----------------+
+| Slice Logic    |     0.042 |       68 |       --- |             --- |
+|   CARRY4       |     0.020 |       12 |      4400 |            0.27 |
+|   Register     |     0.015 |       48 |     35200 |            0.14 |
+|   BUFG         |     0.006 |        1 |        32 |            3.13 |
+|   LUT as Logic |     0.001 |        1 |     17600 |           <0.01 |
+|   Others       |     0.000 |        6 |       --- |             --- |
+| Signals        |     0.327 |       78 |       --- |             --- |
+| Block RAM      |     0.252 |        2 |        60 |            3.33 |
+| I/O            |    15.204 |       18 |       100 |           18.00 |
+| Static Power   |     0.751 |          |           |                 |
+| Total          |    16.576 |          |           |                 |
++----------------+-----------+----------+-----------+-----------------+
 
 
 1.2 Power Supply Summary
@@ -69,20 +72,20 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.022 |       0.018 |      0.004 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.005 |       0.000 |      0.005 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.735 |       0.605 |      0.130 |       NA    | Unspecified | NA         |
+| Vccaux    |       1.800 |     1.285 |       1.244 |      0.040 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco18    |       1.800 |     7.201 |       7.200 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.034 |       0.020 |      0.014 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccpint   |       1.000 |     0.016 |       0.000 |      0.016 |       NA    | Unspecified | NA         |
+| Vccpint   |       1.000 |     0.473 |       0.000 |      0.473 |       NA    | Unspecified | NA         |
 | Vccpaux   |       1.800 |     0.010 |       0.000 |      0.010 |       NA    | Unspecified | NA         |
 | Vccpll    |       1.800 |     0.003 |       0.000 |      0.003 |       NA    | Unspecified | NA         |
 | Vcco_ddr  |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -101,7 +104,7 @@ Table of Contents
 | Design implementation state | High       | Design is routed                                       |                                                                                                                    |
 | Clock nodes activity        | Low        | User specified less than 75% of clocks                 | Provide missing clock activity with a constraint file, simulation results or by editing the "By Clock Domain" view |
 | I/O nodes activity          | Low        | More than 75% of inputs are missing user specification | Provide missing input activity with simulation results or by editing the "By Resource Type -> I/Os" view           |
-| Internal nodes activity     | High       | User specified more than 25% of internal nodes         |                                                                                                                    |
+| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes         | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views         |
 | Device models               | High       | Device models are Production                           |                                                                                                                    |
 |                             |            |                                                        |                                                                                                                    |
 | Overall confidence level    | Low        |                                                        |                                                                                                                    |
@@ -140,10 +143,14 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-----------+-----------+
-| Name      | Power (W) |
-+-----------+-----------+
-| top_level |     0.018 |
-+-----------+-----------+
++--------------------------+-----------+
+| Name                     | Power (W) |
++--------------------------+-----------+
+| top_level                |    15.825 |
+|   phase_accumulator_inst |     0.117 |
+|   your_instance_name     |     0.488 |
+|     U0                   |     0.488 |
+|       inst_blk_mem_gen   |     0.488 |
++--------------------------+-----------+
 
 
